@@ -86,6 +86,10 @@ export function FilterBuilder({
     setDraft([createFilterConditionDraft()])
   }
 
+  function cancel(): void {
+    setOpen(false)
+  }
+
   const isFilterEnabled = value.length > 0
   return (
     <Popover onOpenChange={handleOpenChange} open={open}>
@@ -136,9 +140,14 @@ export function FilterBuilder({
             <Button onClick={clear} size="sm" type="button" variant="ghost">
               Limpar filtros
             </Button>
-            <Button disabled={!canApply} size="sm" type="submit">
-              Aplicar
-            </Button>
+            <div className="flex items-center gap-2">
+              <Button onClick={cancel} size="sm" type="button" variant="outline">
+                Cancelar
+              </Button>
+              <Button disabled={!canApply} size="sm" type="submit">
+                Aplicar
+              </Button>
+            </div>
           </div>
         </Form>
       </PopoverPopup>
